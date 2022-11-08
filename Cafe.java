@@ -16,9 +16,42 @@ public class Cafe extends Building {
         this.nCups = nCups;
         System.out.println("You have built a cafe: ☕");
     }
+
+    /** 
+     *  Shows options available for cafe class
+     */
+    public void showOptions() {
+        super.showOptions();
+        System.out.println("\n + sellsCoffee() \n + restock()");
+    }
+
+    /** 
+     * Sells one cup of coffee and reduces coffee ounces accordingly
+     * @param size size of coffee in relation to ounces
+     */
+    public void sellCoffee(int size){
+        this.nCoffeeOunces -= size;
+        this.nSugarPackets -= nSugarPackets;
+        this.nCreams -= nCreams;
+        this.nCups -=1;
+
+    }
+
+    /** 
+     * Sells one cup of coffee and reduces coffee ounces and sugar packets accordingly
+     * @param size size of coffee in relation to ounces
+     * @param nSugarPackets number of sugar packets used
+     */
+    public void sellCoffee(int size, int nSugarPackets){
+        this.nCoffeeOunces -= size;
+        this.nSugarPackets -= nSugarPackets;
+        this.nCreams -= nCreams;
+        this.nCups -=1;
+
+    }    
     
     /** 
-     * Sells one cups of coffeeand reduces coffee ounces, sugar packets, and creams accordingly
+     * Sells one cup of coffee and reduces coffee ounces, sugar packets, and creams accordingly
      * @param size size of coffee in relation to ounces
      * @param nSugarPackets number of sugar packets used
      * @param nCreams number of creams used

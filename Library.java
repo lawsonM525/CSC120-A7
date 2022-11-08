@@ -3,6 +3,7 @@ import java.util.Hashtable;
 /* Library class: Building to store and take books from */
 public class Library extends Building {
     private java.util.Hashtable<String, Boolean> collection;
+    private Boolean hasElevator;
 
     /** 
      *  Constructor for Library class
@@ -10,10 +11,19 @@ public class Library extends Building {
      *  @param address Location of the library
      *  @param nFloors Number of floors in the library
      */
-    public Library(String name, String address, int nFloors) {
+    public Library(String name, String address, int nFloors, Boolean hE) {
       super(name, address, nFloors);//parent constructor
       this.collection = new Hashtable<String, Boolean>();
+      this.hasElevator = hE;
       System.out.println("You have built a library: 📖");
+    }
+
+    /** 
+     *  Shows options available for cafe class
+     */
+    public void showOptions() {
+      super.showOptions();
+      System.out.println("\n + addTitle() \n + removeTitle() \n + checkOut() \n + checkIn() \n + containsTitle() \n + isAvailable()");
     }
 
     /** 
@@ -96,11 +106,39 @@ public class Library extends Building {
     System.out.println(this.collection);
   }
 
+  /**
+   * Moves user to a new selected floor or lets them climb up or down if there is no elevator
+   * @param floorNum number of the floor user wants to go to
+   */
+  public void goToFloor(int floorNum){
+    if (this.hasElevator){
+      super.goToFloor(floorNum);
+    }
+    else{
+      if (floorNum < 1 || floorNum > this.nFloors) {
+        throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
+    }
+      if (this.activeFloor == -1) {
+        throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
+    }
+      while(this.activeFloor != floorNum){
+        if (this.activeFloor<floorNum){
+          this.activeFloor += 1;
+        }
+        if (this.activeFloor>floorNum){
+          this.activeFloor -= 1;
+        }
+      }
+      System.out.println("You have successfully climbed to floor " + floorNum);
+    }
+  }
+
     public static void main(String[] args) {
-      Library x = new Library("Nielson","Chapin Drive",4);
+      Library x = new Library("Nielson","Chapin Drive",4, true);
       x.addTitle("Bambi - Jidenna");
       x.addTitle("Snow White -Disney");
       x.printCollection();
+      x.showOptions();
     }
   
   }
