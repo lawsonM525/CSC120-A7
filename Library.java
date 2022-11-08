@@ -5,6 +5,10 @@ public class Library extends Building {
     private java.util.Hashtable<String, Boolean> collection;
     private Boolean hasElevator;
 
+    /* Overloaded constructor with address only */
+    public Library(String address) {
+      super(address);
+    }
     /** 
      *  Constructor for Library class
      *  @param name Name of the Library
@@ -24,6 +28,14 @@ public class Library extends Building {
     public void showOptions() {
       super.showOptions();
       System.out.println("\n + addTitle() \n + removeTitle() \n + checkOut() \n + checkIn() \n + containsTitle() \n + isAvailable()");
+    }
+
+    /** 
+     *  Add book to collection with isbn number
+     * @param isbn ISBN number to be add to collection
+     */
+    public void addTitle(int isbn){
+      this.collection.put(String.valueOf(isbn), true);
     }
 
     /** 

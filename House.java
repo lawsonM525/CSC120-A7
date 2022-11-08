@@ -6,6 +6,11 @@ public class House extends Building {
     private Boolean hasDiningRoom;
     private Boolean hasElevator;
 
+    /* Overloaded constructor with address only */
+    public House(String address) {
+      super(address);
+    }
+
     /** 
      *  Constructor for House Building
      *  @param name Name of the House

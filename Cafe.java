@@ -77,6 +77,19 @@ public class Cafe extends Building {
         this.nCreams += nCreams;
         this.nCups += nCups;
     }
+
+    /**
+     * Moves user to floor 1 and does nt allow them to move to an other floor
+     * @param floorNum number of the floor user wants to go to
+     */
+    public void goToFloor(int floorNum){
+        if (floorNum != 1){
+          System.err.println("You can not moe to the other floors!");
+        }
+        else{
+            super.goToFloor(floorNum);
+        }
+      }
     
     /** 
      * Main Method
